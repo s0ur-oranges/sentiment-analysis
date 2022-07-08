@@ -12,16 +12,13 @@ import re
 import string
 import matplotlib.pyplot as plt
 import time
-
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 @st.cache(allow_output_mutation=True)
 def load(vectoriser_path, model_path):
 
-    # Load the vectoriser.
-    file = open(vectoriser_path, 'rb')
-    vectoriser = pickle.load(file)
-    file.close()
+    vectoriser=TfidfVectorizer()
     
     # Load the LR Model.
     file = open(model_path, 'rb')
