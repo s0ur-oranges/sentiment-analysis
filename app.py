@@ -16,22 +16,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 @st.cache(allow_output_mutation=True)
-def load(vectoriser_path, model_path):
 
-    vectoriser=TfidfVectorizer()
+vectoriser=TfidfVectorizer()
     
-    # Load the LR Model.
-    file = open(model_path, 'rb')
-    LRmodel = pickle.load(file)
-    file.close()
+file = open('Sentiment-LR.pickle', 'rb')
+LRmodel = pickle.load(file)
+file.close()
     
-    return vectoriser, LRmodel
-
-
-
-
-
-
 def inference(vectoriser, model, tweets, cols):
     
 #     if uploaded_file:
@@ -220,16 +211,15 @@ st.write('Performing Sentiment Analysis')
 
 # uploaded_file = st.sidebar.file_uploader("Choose a csv file", type="csv")
 # st.sidebar.write("or")
-st.sidebar.subheader("Enter single/multiple tweets separated by semicolon : ")
-tweets = st.sidebar.text_area("Some samples are provided below for reference..", value="I hate twitter;I do not like the movie;Mr. Stark, I don't feel so good;May the Force be with you.;I read the book, the content is not good;This is a new beginning for us", height=500, max_chars=None, key=None)
+st.sidebar.subheader("Enter single/multiple tweets separated by semicolon; ")
+tweets = st.sidebar.text_area("Samples below:", value="I hate the new movie;I love that dish;She is absolutely gorgeous;I read the book you talked about,its so good", height=500, max_chars=None, key=None)
 cols = ["tweet"]
 
     
 if (st.sidebar.button('Predict Sentiment')):   
     progressbar()
     
-    vectoriser, model = load(vectoriser, 'Sentiment-LR.pickle')
-    result_df = inference(vectoriser, model, tweets, cols)
+    result_df = inference(vectoriser,LRmodel, tweets, cols)
     st.table(result_df)
     st.text("")
     st.text("")
