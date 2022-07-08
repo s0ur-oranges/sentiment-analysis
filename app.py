@@ -17,7 +17,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 @st.cache(allow_output_mutation=True)
 
-vectoriser=TfidfVectorizer()
+vectoriser=TfidfVectorizer(
+    stop_words=stopwords.words('english'),
+    norm='l1',
+)
     
 file = open('Sentiment-LR.pickle', 'rb')
 LRmodel = pickle.load(file)
