@@ -228,7 +228,7 @@ cols = ["tweet"]
 if (st.sidebar.button('Predict Sentiment')):   
     progressbar()
     
-    vectoriser, model = load('models/vectoriser.pickle', 'models/Sentiment-LR.pickle')
+    vectoriser, model = load(vectoriser, 'Sentiment-LR.pickle')
     result_df = inference(vectoriser, model, tweets, cols)
     st.table(result_df)
     st.text("")
