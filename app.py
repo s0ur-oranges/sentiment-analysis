@@ -218,9 +218,7 @@ def progressbar():
 
 st.title('Sentiment Analysis App')
 st.write('Performing Sentiment Analysis')
-image = Image.open('data/sentiment.jpg')
-st.image(image, use_column_width=True)
-# st.write('Enter some random tweets in the left sidebar and click on Predict Sentiment!')
+
 
 
 # uploaded_file = st.sidebar.file_uploader("Choose a csv file", type="csv")
